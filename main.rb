@@ -15,10 +15,12 @@ circulation=gets.chomp.to_i
 
 royalties = 24*pages
 editorial = royalties + 0.3*royalties + 1.2*pages
-printing = 0.16*pages + 3*1 + 0.04*pages + 0.08*pages
+
+printing = (0.16*pages + 3*1 + 0.04*pages + 0.08*pages)*circulation
 costs = editorial + printing
+
 profit = 0.23 * costs
 tax = 0.3 * costs
 instance = costs + profit + tax
 
-puts "Royalties: #{royalties} \n Costs: #{costs} \n All Profit: #{(profit*circulation)} \n Tax: #{tax} \n Instance: #{instance} \n"
+puts "Royalties: #{royalties} \n Costs: #{costs} \n All Profit: #{(profit)} \n Tax: #{tax} \n Instance: #{instance/circulation} \n\n"
