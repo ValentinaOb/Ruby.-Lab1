@@ -20,7 +20,7 @@ printing = (0.16*pages + 3*1 + 0.04*pages + 0.08*pages)*circulation
 costs = editorial + printing
 
 profit = 0.23 * costs
-tax = 0.3 * costs
+tax = 0.3 * (costs + profit)
 instance = costs + profit + tax
 
 puts "Royalties: #{royalties} \n Costs: #{costs} \n All Profit: #{(profit)} \n Tax: #{tax} \n Instance: #{instance/circulation} \n\n"
