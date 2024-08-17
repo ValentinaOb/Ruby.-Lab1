@@ -1,15 +1,15 @@
 '''
 Скласти програму з наступними діями:
-Ввести текстовий рядок, у якому є англійські заголовні букви, англійські прописні букви та цифри. Слова у тексті розділені пробілами.
+Ввести текстовий рядок, in якому є англійські заголовні букви, англійські прописні букви та цифри. Слова in тексті розділені пробілами.
 Визначити розмір рядка.
-Визначити кількість заголовних букв, прописних букв та цифр у суцільному рядку.
+Визначити кількість заголовних букв, прописних букв та цифр in суцільному рядку.
 Розбити текст на масив слів.
 Впорядкувати масив слів за зростанням довжини. 
-Перетворити кожне слово у заголовне (перша буква слова – заголовне, решта - прописні).
+Перетворити кожне слово in заголовне (перша буква слова & заголовне, решта - прописні).
 
-Відобразити слова, підозрілі на абревіатуру (містять і букви і цифри).
+Відобразити слова, підозрілі на абревіатуру (містять & букви & цифри).
 
-Створити новий текст, в якому слова першого тексту розміщені у порядку спадання довжини
+Створити новий текст, в якому слова першого тексту розміщені in порядку спадання довжини
 '''
 
 #puts "Input text: "
@@ -17,8 +17,8 @@
 
 text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an 
-unknown printer took a galley of type and scrambled it to make a type specimen book. It 
-has survived not only five centuries, but also the leap into electronic typesetting, remaining
+unknown printer took a galley of type and scrambled it to make a type specimen book. It 14RTF
+has survived not only five centuries, but also the leap into electronic typesetting, remaining FRTG1
 essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
 Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
 
@@ -43,9 +43,10 @@ end
 puts "\nStyle array text: #{text_ar}"
 
 
-
-ab_text=""
-ab_text=text.scan(/[A-Z0-9]/)
+#   !!!
+ab_text1 = text.scan(/\d+\w+/)
+ab_text2 = text.scan(/\w+\d+/)
+ab_text=ab_text1+ab_text2
 
 '''
 for i in (0..text_ar.count-1)
@@ -53,7 +54,11 @@ for i in (0..text_ar.count-1)
 end
 '''
 
+puts "\n1: #{ab_text1}"
+puts "\n2: #{ab_text2}"
 puts "\nAbbreviation array text: #{ab_text}"
+# !!!
+
 
 new_text=""
 for i in (text_ar.count-1..0)
