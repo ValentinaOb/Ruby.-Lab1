@@ -17,7 +17,7 @@
 
 text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an 
-unknown printer took a galley of type and scrambled it to make a type specimen book. It 14RTF
+unknown printer took a galley of type and scrambled it to make a type specimen book. It Y14RTF
 has survived not only five centuries, but also the leap into electronic typesetting, remaining FRTG1
 essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
 Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
@@ -44,18 +44,20 @@ puts "\nStyle array text: #{text_ar}"
 
 
 #   !!!
-ab_text1 = text.scan(/\d+\w+/)
-ab_text2 = text.scan(/\w+\d+/)
-ab_text=ab_text1+ab_text2
 
+ab_text=[]
+el=""
+
+for i in (0..text_ar.count-1)
+  ab_text += text_ar[i].scan(/\w+\d+\w*/)
+end
+
+  
 '''
 for i in (0..text_ar.count-1)
   ab_text+=text_ar[i].scan(pattern)
 end
 '''
-
-puts "\n1: #{ab_text1}"
-puts "\n2: #{ab_text2}"
 puts "\nAbbreviation array text: #{ab_text}"
 # !!!
 
