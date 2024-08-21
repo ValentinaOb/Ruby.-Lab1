@@ -15,12 +15,12 @@
 #puts "Input text: "
 #text=gets.chomp
 
+#text = "Y14RTF FRTG1 "
+
 text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an 
 unknown printer took a galley of type and scrambled it to make a type specimen book. It Y14RTF 
-has survived not only five centuries, but also the leap into electronic typesetting, remaining FRTG1 
-essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing 
-Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum "
+has survived not only five centuries, but also the leap into electronic typesetting, remaining FRTG1 "
 
 puts "Len text: #{text.length}"
 
@@ -148,61 +148,61 @@ for i in (0..text_ar.count-1)
 end
 puts "\nAbbreviation array text: #{ab_text}"
 
-ab1_text=[]
+
+
 #-------start
-for i in (0..text_ar.length)
+ab1_text=[]
+data=""
+
+for i in (0..text_ar1.count-1)
+  small1=0
   big1=0
   numb1=0
-  '''
-  for j in (0..s_letters.count-1)
-    if(text[i]==s_letters[j])
-      small1+=1
-      break
+  for i1 in (0..text_ar1[i].length)
+    #puts "\n  T: #{text_ar1[i][i1]}  T1: #{text_ar1[i]}"
+    for j in (0..s_letters.count-1)
+      if(text_ar1[i][i1]==s_letters[j])
+        small1+=1
+        #puts "\ns: #{small1}   t: #{text_ar1[i][i1]} #{text_ar1[i]}"
+      elsif (text_ar1[i][i1]==b_letters[j])
+        big1+=1
+      end
+      #puts "\ns: #{small1}   b: #{big1} "
     end
-  end
-  '''
 
-  for j in (0..b_letters.count-1)
-    if (text_ar[i]==b_letters[j])
-      big1+=1   
+    for j in (0..numbers.count-1)
+      #puts "\nn: #{numb1}   n1: #{numbers[j]}   T: #{text_ar1[i][i1]}  T1: #{text_ar1[i]}"
+      if(text_ar1[i][i1]==numbers[j].to_s)
+        numb1+=1
+      end
+      #puts "\nn: #{numb1}   n1: #{numbers[j]}   T: #{text_ar1[i][i1]}  T1: #{text_ar1[i]}"
     end
   end
-  for j in (0..numbers.count-1)
-    if (text_ar[i]==numbers[j].to_s)
-      numb1+=1
-    end
-  end
-  if(big1!=0 && numb1!=0)
-    ab1_text.append(text_ar[i])
+
+  #puts "\ns: #{small1}    b: #{big1}     n: #{numb1}     T: #{text_ar1[i]}"
+  if(big1!=0 && numb1!=0 && small1==0)
+    ab1_text.append(text_ar1[i])
+    #puts "\nt: #{text_ar1[i]}"
   end
 end
-puts "\nAbbreviation array text: #{ab1_text}"
 
+puts "\n1 Abbreviation array text: #{ab1_text}"
 #-------end
 
-  
-'''
-for i in (0..text_ar.count-1)
-  ab_text+=text_ar[i].scan(pattern)
-end
-'''
-
-# !!!
 
 
 new_text=[]
-k=0
-
-for i in (text_ar.count-1..0)
-  puts "\nt: #{new_text[k]}"
-  puts "\nK: #{text_ar[i]}"
-  new_text[k] = text_ar[i]
-  k+=1
+i=text_ar.count-1
+while i!=0
+  new_text.append(text_ar[i]) 
+  i-=1
 end
 puts "\nNew text: #{new_text}"
 
-new1_text=""
-for i in (text_ar1.count-1..0)
-  new1_text =new1_text+ text_ar1[i]
+new1_text=[]
+i=text_ar1.count-1
+while i!=0
+  new1_text.append(text_ar1[i]) 
+  i-=1
 end
 puts "\n1 New text: #{new1_text}"
