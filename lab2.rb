@@ -107,10 +107,8 @@ end
 
 tax = profit * ktg
 
-flat = cost + placement + profit + tax 
-
 #puts "\n  category #{category} \n ktg: #{ktg} \n}"
 
 #puts "\n  pr #{profit} \n tax: #{tax} \n A: #{profit + tax}"
 # Result: cost price (CP)   Developer's cost (DC)   Total cost (TC)
-puts "\n  CP: #{cost} \n DC: #{(profit + tax)} \n Total cost (TC): #{flat}"
+puts "\n  CP: #{cost} \n DC: #{(profit + tax)} \n Total cost (TC): #{tax}"
