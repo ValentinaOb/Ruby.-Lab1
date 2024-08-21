@@ -22,15 +22,69 @@ lower_bound = 15
 Результат: {top: [] middle: [Student2, Student3, Student1] bottom: []}
 '''
 
+require 'csv'
 
 #1
 
-goods = Hash["milk"=>10, "milk"=>20, "sugar"=>10]
+def one
+  ar=[:milk, 10, :milk, 20, :sugar, 10]
+  goods = Hash[*ar]
 
-#goods.each { |h| h.each { |k, v| hsh[k] += v } }
-puts goods
+  puts goods[:milk]
 
-'''
- {"milk"=>10, "milk"=>20, "sugar"=>10}
-puts goods["milk"] 
-'''
+  #goods.each { |h| h.each { |k, v| hsh[k] += v } }
+  #puts goods.fetch("milk")
+
+  '''
+  {"milk"=>10, "milk"=>20, "sugar"=>10}
+  puts goods["milk"] 
+  '''
+end
+
+#2
+def two
+
+  #CSV.read("text.csv")
+  #table = CSV.parse(File.read("text.csv"), headers: true)
+  ar = CSV.read("text.csv")
+  puts ar[0]
+  ar1=[]
+  k=0
+  for i in(0..ar.length-1)
+    #ar1.append("#{ar[i][0]},#{ar[i][1]}")
+    #ar1.append(ar[i][0], ar[i][1].to_i)
+    ar1[k] = ar[i][0]
+    ar1[k+1] = ar[i][1].to_i
+    k+=2
+  end
+
+  puts "R : #{ar1[0]}"
+  '''
+  #Also work
+  hash = Hash[*ar1.each_slice(2).to_a.flatten]
+  puts "Q: #{hash["Student1"]}"
+  '''
+
+  new_hesh = Hash[*ar1]
+  #puts "S: #{new_hesh["Student1"]}"
+  puts "S: #{new_hesh}"
+
+
+  #Max = 100 upper_bound = 10 lower_bound = 15
+  puts "\nInput max: " 
+  max=gets.chomp.to_i
+  puts "\nInput upper_bound: " 
+  upper_bound=gets.chomp.to_i
+  puts "\nInput lower_bound: " 
+  lower_bound=gets.chomp.to_i
+
+  sort_hash = new_hesh.sort_by { |_, value| -value }.to_h
+  sort_hash1 = new_hesh.sort_by { |key, _| -key }.to_h
+  puts "S: #{sort_hash}"
+  puts "S1: #{sort_hash1}"
+
+
+end
+
+one()
+two()
