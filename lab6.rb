@@ -69,22 +69,91 @@ def two
   #puts "S: #{new_hesh["Student1"]}"
   puts "S: #{new_hesh}"
 
+  #puts "Array: #{ar1}"
+
 
   #Max = 100 upper_bound = 10 lower_bound = 15
   puts "\nInput max: " 
   max=gets.chomp.to_i
-  puts "\nInput upper_bound: " 
+  puts "Input upper_bound: " 
   upper_bound=gets.chomp.to_i
-  puts "\nInput lower_bound: " 
+  puts "Input lower_bound: " 
   lower_bound=gets.chomp.to_i
 
-  sort_hash = new_hesh.sort_by { |_, value| -value }.to_h
-  sort_hash1 = new_hesh.sort_by { |key, _| -key }.to_h
-  puts "S: #{sort_hash}"
-  puts "S1: #{sort_hash1}"
+
+  mark = Hash[]
+  top = Hash[]
+  upper = Hash[]
+  lower = Hash[]
+
+  hash = hash.sort_by { |_, value| -value }.to_h
+
+  hash.each {|key, value| 
+  if(value>=max)
+    top[key]= value
+  elsif(value>=upper_bound && value<max)
+    upper[key]= value
+  else
+    lower[key]= value
+  end
+  }
+
+
+  arr1=[]
+
+  top = top.sort_by { |key, _| -key }.to_h
+
+  top.each {|key, value| 
+  arr1.push(key)
+  }
+  mark[:top] = arr1
+
+  arr1=[]
+  upper = upper.sort_by { |key, _| -key }.to_h
+  upper.each {|key, value| 
+  arr1.push(key)
+  }
+  mark[:upper] = arr1
+
+  arr1=[]
+  lower = lower.sort_by { |key, _| -key }.to_h
+  lower.each {|key, value| 
+  arr1.push(key)
+  }
+  mark[:lower] = arr1
+
+  '''
+  if(hash>=max)
+    top[hash.key]= hash.value
+  elsif(hash>=upper_bound && hash.value<max)
+    upper[hash.key]= hash
+  else
+    lower[hash.key]= hash
+  end
+  
+  if(hash.value>=max)
+    top[hash.key]= hash.value
+  elsif(hash.value>=upper_bound && hash.value<max)
+    upper[hash.key]= hash.value
+  else
+    lower[hash.key]= hash.value
+  end
+
+  mark [:top]=top.key()
+  mark [:upper]=upper.key()
+  mark [:lower]=lower.key()
+  '''
+
+  puts "M: #{mark}"
+
+
+  #sort_hash = new_hesh.sort_by { |_, value| -value }.to_h
+  #sort_hash1 = new_hesh.sort_by { |key, _| -key }.to_h
+  #puts "S: #{sort_hash}"
+  #puts "S1: #{sort_hash1}"
 
 
 end
 
-one()
+#one()
 two()
