@@ -30,18 +30,15 @@ def one
   ar=[:milk, 10, :milk, 20, :sugar, 10]
   goods = Hash[*ar]
 
-  puts goods[:milk]
+  goo=Hash.new(0)
+  goods.each do |key, value|
+    goo[key]+=value
+  end
+  puts goo
 
-  #goods.each { |h| h.each { |k, v| hsh[k] += v } }
-  #puts goods.fetch("milk")
-
-  '''
-  {"milk"=>10, "milk"=>20, "sugar"=>10}
-  puts goods["milk"] 
-  '''
 end
 
-#2
+#2a
 def two
 
   #CSV.read("text.csv")
@@ -155,5 +152,5 @@ def two
 
 end
 
-#one()
-two()
+one()
+#two()
