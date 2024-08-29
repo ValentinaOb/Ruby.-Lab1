@@ -27,49 +27,33 @@ require 'csv'
 #1
 
 def one
-  ar=[:milk, 10, :milk, 20, :sugar, 10]
-  goods = Hash[*ar]
+  ar=["milk 10", "milk 20","sugar 10"]
+  result=Hash.new(0)
 
-  goo=Hash.new(0)
-  goods.each do |key, value|
-    goo[key]+=value
+  ar.each do |i|
+    key, value = i.split(' ')
+    result[key.to_s]+=value.to_i
   end
-  puts goo
+
+  puts result
 
 end
 
-#2a
 def two
 
-  #CSV.read("text.csv")
-  #table = CSV.parse(File.read("text.csv"), headers: true)
-  ar = CSV.read("text.csv")
-  puts ar[0]
-  ar1=[]
-  k=0
-  for i in(0..ar.length-1)
-    #ar1.append("#{ar[i][0]},#{ar[i][1]}")
-    #ar1.append(ar[i][0], ar[i][1].to_i)
-    ar1[k] = ar[i][0]
-    ar1[k+1] = ar[i][1].to_i
-    k+=2
+  result=Hash.new(0)
+  CSV.foreach('text.csv') do |row|
+    key, value = row[0].to_s, row[1].to_i
+    result[key] = value
   end
+  #puts result
+  
 
-  puts "R : #{ar1[0]}"
-  '''
-  #Also work
-  hash = Hash[*ar1.each_slice(2).to_a.flatten]
-  puts "Q: #{hash["Student1"]}"
-  '''
-
-  new_hesh = Hash[*ar1]
-  #puts "S: #{new_hesh["Student1"]}"
-  puts "S: #{new_hesh}"
-
-  #puts "Array: #{ar1}"
-
-
-  #Max = 100 upper_bound = 10 lower_bound = 15
+  result = result.sort_by{ |key, _| key }.to_h
+  #puts result
+  result = result.sort_by{ |_, value| -value }.to_h
+  #puts result
+  
   puts "\nInput max: " 
   max=gets.chomp.to_i
   puts "Input upper_bound: " 
@@ -78,79 +62,28 @@ def two
   lower_bound=gets.chomp.to_i
 
 
-  mark = Hash[]
-  top = Hash[]
-  upper = Hash[]
-  lower = Hash[]
+  top=Hash.new(0)
+  middle=Hash.new(0)
+  bottom=Hash.new(0)
 
-  hash = hash.sort_by { |_, value| -value }.to_h
-
-  hash.each {|key, value| 
-  if(value>=max)
-    top[key]= value
-  elsif(value>=upper_bound && value<max)
-    upper[key]= value
-  else
-    lower[key]= value
-  end
-  }
-
-
-  arr1=[]
-
-  top = top.sort_by { |key, _| -key }.to_h
-
-  top.each {|key, value| 
-  arr1.push(key)
-  }
-  mark[:top] = arr1
-
-  arr1=[]
-  upper = upper.sort_by { |key, _| -key }.to_h
-  upper.each {|key, value| 
-  arr1.push(key)
-  }
-  mark[:upper] = arr1
-
-  arr1=[]
-  lower = lower.sort_by { |key, _| -key }.to_h
-  lower.each {|key, value| 
-  arr1.push(key)
-  }
-  mark[:lower] = arr1
-
-  '''
-  if(hash>=max)
-    top[hash.key]= hash.value
-  elsif(hash>=upper_bound && hash.value<max)
-    upper[hash.key]= hash
-  else
-    lower[hash.key]= hash
-  end
-  
-  if(hash.value>=max)
-    top[hash.key]= hash.value
-  elsif(hash.value>=upper_bound && hash.value<max)
-    upper[hash.key]= hash.value
-  else
-    lower[hash.key]= hash.value
+  result.each do |key,value|
+    if(value>=max)
+      top[key]=value
+    elsif(value<lower_bound)
+      bottom[key]=value
+    else
+      middle[key]=value
+    end
   end
 
-  mark [:top]=top.key()
-  mark [:upper]=upper.key()
-  mark [:lower]=lower.key()
-  '''
-
-  puts "M: #{mark}"
-
-
-  #sort_hash = new_hesh.sort_by { |_, value| -value }.to_h
-  #sort_hash1 = new_hesh.sort_by { |key, _| -key }.to_h
-  #puts "S: #{sort_hash}"
-  #puts "S1: #{sort_hash1}"
-
+  puts "Top: "
+  puts top
+  puts "Middle: "
+  puts middle
+  puts "Bottom: "
+  puts bottom
 
 end
 
-one()
-#two()
+#one()
+two()

@@ -30,7 +30,7 @@ end
 
 #sum()
 
-'''
+'
 puts "\nInput True pas1: " 
 password=gets.chomp.to_s
 puts "\nInput True pas2: " 
@@ -42,7 +42,7 @@ puts "\nInput password2: "
 ps1=gets.chomp.to_s
 
 admin=check_password(password,password1)
-'''
+'
 
 admin=check_password("u1","p1")
 puts ("u1, p1: #{admin.call("u1","p1")}")
