@@ -175,14 +175,14 @@ class Book
   attr_reader :name, :publication, :year, :authors
   @@books=[]
 
-  def initialize(name, publication, year, *author)
+  def initialize(name, publication, year, *authors)
     #puts "V1: #{validate_name(name)}, V2: #{validate_name(publication)}, V3: #{validate_year(year)}\n"
-    if (validate_author(*author) && validate_name(name) && validate_name(publication) && validate_year(year))
-      puts "#{name}, #{publication}, #{year}"
+    if (validate_author(*authors) && validate_name(name) && validate_name(publication) && validate_year(year))
+      #puts "#{name}, #{publication}, #{year}"
       @name = name
       @publication = publication
       @year = year
-      @author = author
+      @authors = authors
       add_book(self)
     else
       @name = @publication = @year = @author = nil
@@ -190,7 +190,7 @@ class Book
   end
 
   def self.inf
-    puts @@books.each{|a| puts"#{a.name}, #{a.publication}, #{a.year}, #{@@author}"}
+    puts @@books.each{|a| puts"#{a.name}, #{a.publication}, #{a.year}, #{a.authors}"}
   end
 
   def validate_author(*str)
